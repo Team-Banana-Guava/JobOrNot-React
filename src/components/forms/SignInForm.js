@@ -43,7 +43,7 @@ class SignInForm extends Component {
         this.setState({
             userName: '',
             password: '',
-        })
+        });
     }
 
     handleChange(e) {
@@ -53,7 +53,7 @@ class SignInForm extends Component {
     render() {
         return (
             <div>
-                <Nav signedIn={this.props.signedIn} button={this.props.button}/>
+                <Nav button={this.props.button}/>
                 <form onSubmit={this.handleFormSignIn}>
                     <h1>THIS IS THE SIGN IN FORM</h1>
                     <SingleInput 

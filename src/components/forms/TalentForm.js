@@ -77,7 +77,7 @@ class TalentForm extends Component {
     render() {
         return (
             <div>
-                <Nav signedIn={this.props.signedIn} />
+                <Nav />
                 <form onSubmit={this.handleFormSignUp}>
                     <h1>THIS FORM SIGNS UP TALENT</h1>
                     <SingleInput 

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import SingleInput from './SingleInput';
 import Nav from '../navbar/Nav';
-
+import { connect } from 'react-redux';
+import { userSignUpSuccess } from '../../actions/auth-actions';
 
 class RecruiterForm extends Component {
     constructor(props) {
@@ -23,16 +24,6 @@ class RecruiterForm extends Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    // componentDidMount() {
-    //     fetch('./fetchToDB')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             this.setState({
-    //                 firstName: data.firstName
-    //             });
-    //         });
-    // };
-
     handleFormSignUp(e) {
         e.preventDefault();
 
@@ -48,7 +39,6 @@ class RecruiterForm extends Component {
         };
 
         this.props.signUp(formPayload);
-        console.log('to be sent to DB - formPayload:', formPayload);
         this.handleFormClear(e);
     }
 
@@ -77,7 +67,7 @@ class RecruiterForm extends Component {
     render() {
         return ( 
             <div>
-                <Nav signedIn={this.props.signedIn} />
+                <Nav />
                 <form onSubmit={this.handleFormSignUp}>
                     <h1>THIS FORM SIGNS UP RECRUITERS</h1>
                     <SingleInput 
@@ -148,4 +138,10 @@ class RecruiterForm extends Component {
     };
 }
 
-export default RecruiterForm;
+function mapDispatchToProps(dispatch) {
+    return {
+        signUp: (options) => dispatch(userSignUpSuccess(options))
+    }
+}
+
+export default connect(null, mapDispatchToProps)(RecruiterForm);
