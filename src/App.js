@@ -1,37 +1,23 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
-
+import React from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './components/home/Home';
+import RecruiterForm from './components/forms/RecruiterForm';
+import TalentForm from './components/forms/TalentForm';
+import SignInForm from './components/forms/SignInForm';
+import Profile from './components/profile/Profile';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      signedIn: false,
-    }
-    this.onSignIn = this.onSignIn.bind(this);
-  }
-
-  onSignIn = () => {
-    if(!this.state.signedIn) this.setState({ signedIn: true})
-    else this.setState({ signedIn: false})
-  }
-
-  render() {
+function App() {
     return (
       <Router>
-
-        <Switch>
-          <Route exact path='/' render={(props)=> <Home {...props} signedIn={this.state.signedIn} onSignIn={this.onSignIn}/>} />
-        </Switch>
+        <div>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/recruitersignup' component={RecruiterForm} />
+          <Route exact path='/talentsignup' component={TalentForm} />
+          <Route exact path='/signin' component={SignInForm} />
+          <Route exact path='/profile' component={Profile} />
+        </div>
       </Router>
     );
-  }
 }
 
 export default App;
