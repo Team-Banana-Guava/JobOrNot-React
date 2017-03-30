@@ -9,13 +9,14 @@ export function userAuth(state = initialState, action) {
             return {
                 ...state,
                 isLoggedIn: true,
-                token: action.token
+                user: action.user.userObj,
+                token: action.user.token
             };
         case 'USER_SIGNUP_SUCCESS':
             return {
-                ...state,
                 isLoggedIn: true,
-                token: action.token
+                user: action.user.userObj,
+                token: action.user.token
             };
         default:
             return state;
