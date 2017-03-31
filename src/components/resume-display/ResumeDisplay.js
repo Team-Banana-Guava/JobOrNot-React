@@ -61,14 +61,9 @@ class ResumeDisplay extends React.Component {
     render() {
         return (
             <div>
-/* original on master before merge conflict
-                <GetResume 
-                    resume={this.props.resumes[this.state.currentResume]} 
-                    token={this.props.token} />
+                <GetResume resume={this.props.resumes[0]} fetch={this.props.fetchFile} token={this.props.token} />
                 <button onClick={this.handleVoteUp}>Yes</button>
                 <button onClick={this.handleVoteDown}>No</button>
-original on master before merge conflict*/
-                <GetResume resume={this.props.resumes[0]} fetch={this.props.fetchFile} token={this.props.token} />
             </div>
         );
     }
