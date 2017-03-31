@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import SingleInput from './SingleInput';
 import Nav from '../navbar/Nav';
 import { connect } from 'react-redux';
-import { sendSignUp } from '../../actions/auth-actions';
+import { sendSignUp, updateProfile } from '../../actions/auth-actions';
 
 class TalentForm extends Component {
     constructor(props) {
@@ -19,6 +19,7 @@ class TalentForm extends Component {
         // this.handleFormUpdate = this.handleFormUpdate.bind(this);
         this.handleFormClear = this.handleFormClear.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleTalentUpdate = this.handleTalentUpdate.bind(this);
     }
 
     handleFormSignUp(e) {
@@ -65,6 +66,37 @@ class TalentForm extends Component {
     handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
     }
+
+    handleTalentUpdate(e) {
+        e.preventDefault();
+
+        const formPayload = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            username: this.state.username,
+            email: this.state.email,
+            password: this.state.password,
+            role: 'talent'
+        };
+
+        this.props.updateProfile({ 
+            method: 'PATCH', 
+            path: '/changeAccountInfo', 
+            body: formPayload,
+            token: this.props.token,
+        })
+            .then((action) => {
+                if (action.type !== 'ITEMS_HAS_ERRORED') {
+                    // this.handleFormClear(e);
+                    // this.props.history.push('/profile'); 
+                } else alert('Update was not executed correctly. Please try again.');
+            })
+            .catch(() => {
+                console.log('at catch');
+                this.handleFormClear(e);
+                this.props.history.push('/profile');
+            });    
+    }
  
     render() {
         return (
@@ -109,13 +141,18 @@ class TalentForm extends Component {
                         placeholder={'Select a Password'} />
                     <button 
                         type='button'
-                        onClick={this.handleFormClear}
-                    >
+                        onClick={this.handleFormClear}>
                         Clear Form
                     </button>
                     <input 
                         type='submit'
                         value='submit'/>
+                    <button
+                        type='button'
+                        onClick={this.handleTalentUpdate}
+                    >
+                        Update profile
+                    </button>
                 </form>
             </div>
         );
@@ -124,13 +161,15 @@ class TalentForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        resume: state.uploads
+        resume: state.uploads,
+        token: state.userAuth.token
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        signUp: (options) => dispatch(sendSignUp(options))
+        signUp: (options) => dispatch(sendSignUp(options)),
+        updateProfile: (options) => dispatch(updateProfile(options))
     };
 }
 
@@ -138,5 +177,5 @@ export default connect(mapStateToProps, mapDispatchToProps)(TalentForm);
 
 TalentForm.propTypes = {
     signUp: PropTypes.func,
-    resume: PropTypes.object
+    history: PropTypes.any
 };

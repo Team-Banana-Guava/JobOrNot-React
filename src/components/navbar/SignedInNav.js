@@ -25,7 +25,6 @@ const SignedInNav = (props) => {
           <li><Link to='/'>JobOrNot</Link></li>
           <li><Link to='/howitworks'>How It Works</Link></li>
           <li><Link to='/profile'>Profile</Link></li>
-          <li><Link to='/resumesubmit'>ResumeSubmitTest</Link></li>
           <li>Welcome, {props.user.firstName}</li>
           {/* THIS WORKS (30-34)...but it may need to be improved...*/}
           <li><Link to='/' onClick={(e) => {
@@ -33,10 +32,16 @@ const SignedInNav = (props) => {
               props.handleSignOut();
               props.history.push('/');
           }}>Sign Out</Link></li>
+          <li><Link to='/resume-display'>Resume Display</Link></li>
         </ul>
       </nav>
     );
 };
 
-
 export default connect(mapStateToProps, mapDispatchToProps)(SignedInNav);
+
+SignedInNav.propTypes = {
+    user: React.PropTypes.object,
+    handleSignOut: React.PropTypes.func,
+    history: React.PropTypes.any
+};
