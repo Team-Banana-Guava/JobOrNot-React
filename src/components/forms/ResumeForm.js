@@ -80,7 +80,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDisptachToProps(dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         sendSkills: (options) => dispatch(sendSkills(options))
     };
@@ -94,4 +94,4 @@ ResumeForm.propTypes = {
     token: React.PropTypes.string
 };
 
-export default connect(mapStateToProps, mapDisptachToProps)(ResumeForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ResumeForm);
