@@ -15,5 +15,9 @@ The client side of the JobOrNot, an app for talented candidates to upload their 
 1. In the same terminal: `npm start`
 * Note: the complete viewing experience on `localhost` requires running the [backend server](https://github.com/Team-Banana-Guava/JobOrNot-Server)
 
+## Contribution Guidelines
+
+* Coding Style/Format, etc.
+
 ## Created by
 [Stephanie Caulley](https://github.com/sdcaulley)&&[Michelle Erickson](https://github.com/mericks)&&[Meghan Rebecca](https://github.com/meghanroserebecca)&&[Kevin Wong](https://github.com/cmd-kvn)
