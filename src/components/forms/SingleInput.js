@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 
 const SingleInput = (props) => {
-    return(
+    return (
         <div>
             <label>{props.title}</label>
             <input
@@ -24,6 +24,7 @@ SingleInput.propTypes = {
         PropTypes.array
     ]).isRequired,
     placeholder: PropTypes.string.isRequired,
-}
+    controlFunc: PropTypes.func
+};
 
 export default SingleInput;
