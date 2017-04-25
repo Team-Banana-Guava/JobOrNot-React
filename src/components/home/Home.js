@@ -1,21 +1,23 @@
 import React from 'react';
-
 import Nav from '../navbar/Nav';
 import Welcome from './Welcome';
 import RecruiterIntro from './RecruiterIntro';
-import SeekerIntro from './SeekerIntro';
-import Footer from '../footer';
+import TalentIntro from './TalentIntro';
+import WelcomeBuffer from './WelcomeBuffer';
+import Footer from './Footer';
+import './Home.css';
 
-const Home = (props) => {
+const Home = () => {
     return (
         <div>
-            <Nav signedIn={props.signedIn} button={<button onClick={props.onSignIn}>sign in/out</button>}/>
+            <Nav />
             <Welcome />
             <RecruiterIntro />
-            <SeekerIntro />
+            <WelcomeBuffer />
+            <TalentIntro />
             <Footer />
         </div> 
-    )
-}
+    );
+};
 
 export default Home;

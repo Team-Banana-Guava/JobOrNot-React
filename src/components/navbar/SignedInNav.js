@@ -1,21 +1,48 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { userLogoutSuccess } from '../../actions/auth-actions';
+import logo from '../../assets/JobOrNot_Blue_50.png';
 
-const SignedInNav = (props) => {
-  return (
-    <nav>
-      <ul>
-        <li><img src="http://placehold.it/50x50" alt='logo' /></li>
-        <li>JobOrNot</li>
-        <li>How It Works</li>
-        <li>Profile</li>
-        <li>{props.button}</li>
-      </ul>
+const mapStateToProps = (state) => {
+    return {
+        user: state.userAuth.user,
+    };
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return { 
+        handleSignOut() {
+            dispatch(userLogoutSuccess());
+        }
+    };
+};
+
+const SignedInNav = (props) => (
+    <nav className='navbar'>
+        <div className='container'>
+            <div className='row'>
+                <div className='three columns'>
+                    <Link to='/'><img src={logo} alt='Job or Not' /></Link>
+                </div>
+                <div className='nine columns'>
+                    <Link to='/' className='u-pull-right' onClick={(e) => {
+                        props.handleSignOut();
+                        props.history.push('/');
+                        }}>Sign Out</Link>
+                    <Link to='/profile' className='u-pull-right'>Profile</Link>
+                    Welcome, {props.user.firstName}
+                    <Link to='/howitworks' className='u-pull-right'>How It Works</Link>
+                </div>
+                </div>
+            </div>
     </nav>
-  )
-}
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignedInNav);
 
 SignedInNav.propTypes = {
-  button: PropTypes.node.isRequired,
-}
-
-export default SignedInNav;
+    user: React.PropTypes.object,
+    handleSignOut: React.PropTypes.func,
+    history: React.PropTypes.any
+};

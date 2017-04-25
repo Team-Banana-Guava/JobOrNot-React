@@ -1,37 +1,38 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
-
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './components/home/Home';
+import RecruiterForm from './components/forms/RecruiterForm';
+import TalentForm from './components/forms/TalentForm';
+import SignInForm from './components/forms/SignInForm';
+import ResumeDisplay from './components/resume-display/ResumeDisplay';
+import Profile from './components/profile/Profile';
+import HowItWorks from './components/home/HowItWorks';
+import ReviewResume from './components/resume-display/ReviewResume';
+import TalentSignUpCont from './components/profile/TalentSignUpCont';
+import DeleteProfile from './components/profile/DeleteProfile';
+import './vendor/normalize.css';
+import './vendor/skeleton.css';
+import './App.css';
 
-class App extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      signedIn: false,
-    }
-    this.onSignIn = this.onSignIn.bind(this);
-  }
-
-  onSignIn = () => {
-    if(!this.state.signedIn) this.setState({ signedIn: true})
-    else this.setState({ signedIn: false})
-  }
-
-  render() {
+function App() {
     return (
       <Router>
-
-        <Switch>
-          <Route exact path='/' render={(props)=> <Home {...props} signedIn={this.state.signedIn} onSignIn={this.onSignIn}/>} />
-        </Switch>
+        <div>
+          <Switch>
+            <Route exact path='/' component={Home} />
+            <Route exact path='/recruitersignup' component={RecruiterForm} />
+            <Route exact path='/talentsignup' component={TalentForm} />
+            <Route exact path='/signin' component={SignInForm} />
+            <Route exact path='/profile' component={Profile} />
+            <Route exact path='/howitworks' component={HowItWorks} />
+            <Route exact path='/resume-display' component={ResumeDisplay} />
+            <Route exact path='/review-resume' component={ReviewResume} />
+            <Route exact path='/talentsignupcont' component={TalentSignUpCont} />
+            <Route exact path='/delete-profile' component={DeleteProfile} />
+          </Switch>
+        </div>
       </Router>
     );
-  }
 }
 
 export default App;

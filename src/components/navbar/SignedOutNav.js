@@ -1,20 +1,24 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/JobOrNot_Blue_50.png';
 
 const SignedOutNav = (props) => {
-  return (
-    <nav>
-      <ul>
-        <li><img src="http://placehold.it/50x50" alt='logo'/></li>
-        <li>JobOrNot</li>
-        <li>How It Works</li>
-        <li>{props.button}</li>
-      </ul>
-    </nav>
-  )
-}
+    return (
+        <nav className='navbar'>
+            <div className='container'>
+                <div className='row'>
+                    <div className='three columns'>
+                        <Link to='/'><img src={logo} alt='Job or Not' /></Link>
+                    </div>
+                    <div className='nine columns'>
+                        <Link to='/signin' className='u-pull-right'>Sign In</Link>
+                        <Link to='/howitworks' className='u-pull-right'>How It Works</Link>
+                    </div>
+                  </div>
+              </div>
+        </nav>
+    );
+};
 
-SignedOutNav.propTypes = {
-  button: PropTypes.node.isRequired,
-}
 
 export default SignedOutNav;
